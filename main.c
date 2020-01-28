@@ -74,8 +74,8 @@ int day_of_the_year(int day, int month, int year)
     //Überprüfung ob Datum existiert
     if (monat < 0 || monat > 12 || jahr < 0 || tag < 1 || tag > tage[monat - 1])
     {
-        printf("Datum existiert nicht")
-        return -1
+        printf("Datum existiert nicht");
+        return -1;
     }
 
     //Berechnung der Tage durch Addition der vergangenen Monate
@@ -87,22 +87,19 @@ int day_of_the_year(int day, int month, int year)
     //Addition des aktuellen Monats
     ergebnis += tag;
 
-    //Ausgabe
-    printf("Der aktuelle Tag ist der %d des Jahres", ergebnis);
-
     return ergebnis;
 }
 
 int main()
 {
-    int tag_des_jahres = day_of_the_year(31, 12, 2018)
+    int tag_des_jahres = day_of_the_year(25, 4, 1992);
 
     //Überprüfung ob Funktion einen Fehler zurückgibt
     if (tag_des_jahres == -1)
     {
         //Ausgabe des Fehlers
-        printf("Datum existiert nicht. Fehlercode: %i\n", tag_des_jahres)
-        return -1
+        printf("Datum existiert nicht. Fehlercode: %i\n", tag_des_jahres);
+        return -1;
     }
 
     //Ausgabe falls Datum korrekt
