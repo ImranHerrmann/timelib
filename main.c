@@ -14,14 +14,19 @@
 /**
 * Funktion berechnet ob Jahr ein Schaltjahr ist
 *
-* return 0 if no, 1 if yes
+* return 0 if no, 1 if yes, -1 if wrong year
 **/
-int istSchaltjahr(int jahrTest)
+int is_leapyear(int year)
 {
 
 //Deklaration der Variablen
-    int jahr = jahrTest;
-    int istSchaltjahr = 0;
+    int jahr = year;
+    int isLeapyear = 0;
+
+    if (1582 > jahr && jahr > 2400)
+    {
+        return -1;
+    }
 
 
 //Rechnung / Jahr mit Modulo, weil es erst ohne einen Rest, ein Schaltjahr ist
@@ -31,26 +36,65 @@ int istSchaltjahr(int jahrTest)
         {
             if (jahr % 400 == 0)
             {
-                istSchaltjahr = 1;
+                isLeapyear = 1;
             }
 
             else
             {
-                istSchaltjahr = 0;
+                isLeapyear = 0;
             }
         }
 
         else
         {
-            istSchaltjahr = 1;
+            isLeapyear = 1;
         }
     }
     else
     {
-        istSchaltjahr = 0;
+        isLeapyear = 0;
     }
-    return istSchaltjahr;
 
+    return isLeapyear;
+
+}
+
+/**
+* Gibt Anzahl der Tage des abgefragten Monats aus
+*
+* return Tage des Monats, -1 wenn ungültige Daten übergeben wurden
+**/
+int get_days_for_month(int month, int year)
+{
+    int daysOfMonths[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
+
+    //Überprüfung auf Schaltjahr
+    if (is_leapyear(year) == 1)
+    {
+        daysOfMonths[1] = 29;
+    }
+    //Überprüfung ob Übergabeparameter gültig sind
+    else if (is_leapyear(year) == -1 || month < 1 || month > 12)
+    {
+        return -1;
+    }
+
+    return daysOfMonths[month - 1]
+}
+
+/**
+* Überprüft ob Datum existiert
+*
+**/
+int exists_date(int day, int month, int year)
+{
+    int isValid = 1;
+    if (month > 12 || month < 1 || year < 1582 || year > 2399 || day < 0 || get_days_for_month(month) < day)
+    {
+        return isValid = 0;
+    }
+
+    return 1
 }
 
 /**
@@ -74,7 +118,6 @@ int day_of_the_year(int day, int month, int year)
     //Überprüfung ob Datum existiert
     if (monat < 0 || monat > 12 || jahr < 0 || tag < 1 || tag > tage[monat - 1])
     {
-        printf("Datum existiert nicht");
         return -1;
     }
 
