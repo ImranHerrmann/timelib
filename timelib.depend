@@ -1,5 +1,8 @@
 # depslib dependency file v1.0
-1581407959 source:c:\users\imi\documents\ausbildung\berufsschule\lf6\programme\timelib\main.c
+1581412262 source:c:\users\imi\documents\ausbildung\berufsschule\lf6\programme\timelib\main.c
 	<stdio.h>
 	<stdlib.h>
+	"functions.h"
+
+1581412262 c:\users\imi\documents\ausbildung\berufsschule\lf6\programme\timelib\functions.h
 
