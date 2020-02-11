@@ -140,7 +140,7 @@ int input_date(int day, int month, int year)
 
 int main()
 {
-    int tag_des_jahres = day_of_the_year(30, 5, 2020);
+    int tag_des_jahres = day_of_the_year(30, 9, 2800);
 
     //Überprüfung ob Funktion einen Fehler zurückgibt
     if (tag_des_jahres == -1)
