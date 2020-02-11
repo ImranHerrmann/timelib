@@ -79,7 +79,7 @@ int get_days_for_month(int month, int year)
         return -1;
     }
 
-    return daysOfMonths[month - 1]
+    return daysOfMonths[month - 1];
 }
 
 /**
@@ -89,12 +89,12 @@ int get_days_for_month(int month, int year)
 int exists_date(int day, int month, int year)
 {
     int isValid = 1;
-    if (month > 12 || month < 1 || year < 1582 || year > 2399 || day < 0 || get_days_for_month(month) < day)
+    if (month > 12 || month < 1 || year < 1582 || year > 2399 || day < 0 || get_days_for_month(month, year) < day)
     {
         return isValid = 0;
     }
 
-    return 1
+    return 1;
 }
 
 /**
@@ -105,37 +105,42 @@ int exists_date(int day, int month, int year)
 int day_of_the_year(int day, int month, int year)
 {
     //Deklaration der Variablen und des Monatsarray
-    int tag = day, monat = month, jahr = year, i = 0, ergebnis = 0;
+    int i = 0, ergebnis = 0;
     int tage[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
 
     //Überprüfung ob es ein Schaltjahr ist
-    if (istSchaltjahr(jahr) == 1)
+    if (is_leapyear(year) == 1)
     {
         //Änderung des Februars in 29 Tage
         tage[1] = 29;
     }
 
     //Überprüfung ob Datum existiert
-    if (monat < 0 || monat > 12 || jahr < 0 || tag < 1 || tag > tage[monat - 1])
+    if (month < 0 || month > 12 || year < 0 || day < 1 || day > tage[month - 1])
     {
         return -1;
     }
 
     //Berechnung der Tage durch Addition der vergangenen Monate
-    for (i = 0; i < monat - 1; i++)
+    for (i = 0; i < month - 1; i++)
     {
         ergebnis += tage[i];
     }
 
     //Addition des aktuellen Monats
-    ergebnis += tag;
+    ergebnis += day;
 
     return ergebnis;
 }
 
+int input_date(int day, int month, int year)
+{
+    return 0;
+}
+
 int main()
 {
-    int tag_des_jahres = day_of_the_year(25, 4, 1992);
+    int tag_des_jahres = day_of_the_year(30, 5, 2020);
 
     //Überprüfung ob Funktion einen Fehler zurückgibt
     if (tag_des_jahres == -1)
