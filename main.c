@@ -18,15 +18,13 @@ int main()
 
     int tag_des_jahres = day_of_the_year(day, month, year);
 
-    //Überprüfung ob Funktion einen Fehler zurückgibt
+    //check for error
     if (tag_des_jahres == -1)
     {
-        //Ausgabe des Fehlers
         printf("Datum existiert nicht. Fehlercode: %i\n", tag_des_jahres);
         return -1;
     }
 
-    //Ausgabe falls Datum korrekt
     printf("Tag des Jahres: %i\n", tag_des_jahres);
     return 0;
 }
