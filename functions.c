@@ -1,29 +1,28 @@
 #include "functions.h"
 
 /**
-* Funktion berechnet ob Jahr ein Schaltjahr ist
+* Checks if year is leapyear
 *
 * return 0 if no, 1 if yes, -1 if wrong year
 **/
 int is_leapyear(int year)
 {
 
-//Deklaration der Variablen
-    int jahr = year;
+//declaration of variables
     int isLeapyear = 0;
 
-    if (1582 > jahr && jahr > 2400)
+    if (1582 > year && year > 2400)
     {
         return -1;
     }
 
 
-//Rechnung / Jahr mit Modulo, weil es erst ohne einen Rest, ein Schaltjahr ist
-    if (jahr % 4 == 0)
+//calculation
+    if (year % 4 == 0)
     {
-        if (jahr % 100 == 0)
+        if (year % 100 == 0)
         {
-            if (jahr % 400 == 0)
+            if (year % 400 == 0)
             {
                 isLeapyear = 1;
             }
@@ -49,9 +48,9 @@ int is_leapyear(int year)
 }
 
 /**
-* Gibt Anzahl der Tage des abgefragten Monats aus
+* calculates days of month
 *
-* return Tage des Monats, -1 wenn ungültige Daten übergeben wurden
+* return days of month, -1 when wrong month/year
 **/
 int get_days_for_month(int month, int year)
 {
@@ -72,51 +71,49 @@ int get_days_for_month(int month, int year)
 }
 
 /**
-* Überprüft ob Datum existiert
+* checks if date exists
 *
+* return 1 if date exists, 0 if not
 **/
 int exists_date(int day, int month, int year)
 {
-    int isValid = 1;
     if (month > 12 || month < 1 || year < 1582 || year < 2399 || day < 0 || get_days_for_month(month, year) < day)
     {
-        return isValid = 0;
+        return 0;
     }
 
     return 1;
 }
 
 /**
- * Funktion zur Berechnung des Tags des Jahres
+ * calculates days of year
  *
- * return -1 wenn Datum nicht existiert
+ * return count of days, -1 if wrong date
  **/
 int day_of_the_year(int day, int month, int year)
 {
-    //Deklaration der Variablen und des Monatsarray
+    //declaration of variables
     int i = 0, ergebnis = 0;
     int tage[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
 
-    //Überprüfung ob es ein Schaltjahr ist
+    //check leapyear
     if (is_leapyear(year) == 1)
     {
-        //Änderung des Februars in 29 Tage
         tage[1] = 29;
     }
 
-    //Überprüfung ob Datum existiert
+    //check if valid date
     if (!exists_date(day, month, year))
     {
         return -1;
     }
 
-    //Berechnung der Tage durch Addition der vergangenen Monate
+    //calculation of days
     for (i = 0; i < month - 1; i++)
     {
         ergebnis += tage[i];
     }
 
-    //Addition des aktuellen Monats
     ergebnis += day;
 
     return ergebnis;

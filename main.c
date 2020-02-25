@@ -1,3 +1,7 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "functions.h"
+
 /**
 * Programm zur Berechnung der bereits vergangenen Tage des Jahres anhand eines
 * eingegebenen Datums.
@@ -7,11 +11,6 @@
 *
 * 2020-01-28
 **/
-
-#include <stdio.h>
-#include <stdlib.h>
-#include "functions.h"
-
 int main()
 {
     int tag_des_jahres = day_of_the_year(30, 9, 2800);
