@@ -13,7 +13,10 @@
 **/
 int main()
 {
-    int tag_des_jahres = day_of_the_year(30, 9, 2800);
+    int day = 0, month = 0, year = 0;
+    input_date(&day, &month, &year);
+
+    int tag_des_jahres = day_of_the_year(day, month, year);
 
     //Überprüfung ob Funktion einen Fehler zurückgibt
     if (tag_des_jahres == -1)

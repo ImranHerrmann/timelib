@@ -1,11 +1,11 @@
 # depslib dependency file v1.0
-1581412262 source:c:\users\imi\documents\ausbildung\berufsschule\lf6\programme\timelib\main.c
+1582622059 source:c:\users\imi\documents\ausbildung\berufsschule\lf6\programme\timelib\main.c
 	<stdio.h>
 	<stdlib.h>
 	"functions.h"
 
-1581414379 c:\users\imi\documents\ausbildung\berufsschule\lf6\programme\timelib\functions.h
+1582622140 c:\users\imi\documents\ausbildung\berufsschule\lf6\programme\timelib\functions.h
 
-1581412365 source:c:\users\imi\documents\ausbildung\berufsschule\lf6\programme\timelib\functions.c
+1582623035 source:c:\users\imi\documents\ausbildung\berufsschule\lf6\programme\timelib\functions.c
 	"functions.h"
 

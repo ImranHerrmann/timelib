@@ -73,16 +73,16 @@ int get_days_for_month(int month, int year)
 /**
 * checks if date exists
 *
-* return 1 if date exists, 0 if not
+* return 0 if date exists, -1 if not
 **/
 int exists_date(int day, int month, int year)
 {
-    if (month > 12 || month < 1 || year < 1582 || year < 2399 || day < 0 || get_days_for_month(month, year) < day)
+    if (month > 12 || month < 1 || year < 1582 || year > 2399 || day < 1 || get_days_for_month(month, year) < day)
     {
-        return 0;
+        return -1;
     }
 
-    return 1;
+    return 0;
 }
 
 /**
@@ -103,7 +103,7 @@ int day_of_the_year(int day, int month, int year)
     }
 
     //check if valid date
-    if (!exists_date(day, month, year))
+    if (exists_date(day, month, year) == -1)
     {
         return -1;
     }
@@ -119,7 +119,23 @@ int day_of_the_year(int day, int month, int year)
     return ergebnis;
 }
 
-int input_date(int day, int month, int year)
+/**
+* Lets user enter a date
+*
+* return 0 if date is valid
+**/
+int input_date(int *day, int *month, int *year)
 {
+    do
+    {
+        printf("Please enter day: ");
+        scanf("%d", day);
+        printf("Please enter month: ");
+        scanf("%d", month);
+        printf("Please enter day: ");
+        scanf("%d", year);
+    }
+    while(exists_date(*day, *month, *year) == -1);
+
     return 0;
 }
