@@ -1,3 +1,13 @@
+/**
+* Funktionsbibliothek zur Berechnung der bereits vergangenen Tage des Jahres anhand eines
+* eingegebenen Datums.
+*
+* Autor: Imran Yassir Herrmann
+* Klasse: IFA92
+*
+* 2020-02-25
+**/
+
 #include "functions.h"
 
 /**
