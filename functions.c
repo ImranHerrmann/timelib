@@ -9,7 +9,8 @@
 **/
 
 #include "functions.h"
-
+#include "stdio.h"
+#include "stdlib.h"
 /**
 * Checks if year is leapyear
 *
@@ -85,9 +86,9 @@ int get_days_for_month(int month, int year)
 *
 * return 0 if date exists, -1 if not
 **/
-int exists_date(int day, int month, int year)
+int exists_date(struct date inputDate)
 {
-    if (month > 12 || month < 1 || year < 1582 || year > 2399 || day < 1 || get_days_for_month(month, year) < day)
+    if (inputDate.month > 12 || inputDate.month < 1 || inputDate.year < 1582 || inputDate.year > 2399 || inputDate.day < 1 || get_days_for_month(inputDate.month, inputDate.year) < inputDate.day)
     {
         return -1;
     }
@@ -100,31 +101,31 @@ int exists_date(int day, int month, int year)
  *
  * return count of days, -1 if wrong date
  **/
-int day_of_the_year(int day, int month, int year)
+int day_of_the_year(struct date inputDate)
 {
     //declaration of variables
     int i = 0, ergebnis = 0;
     int tage[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
 
     //check leapyear
-    if (is_leapyear(year) == 1)
+    if (is_leapyear(inputDate.year) == 1)
     {
         tage[1] = 29;
     }
 
     //check if valid date
-    if (exists_date(day, month, year) == -1)
+    if (exists_date(inputDate) == -1)
     {
         return -1;
     }
 
     //calculation of days
-    for (i = 0; i < month - 1; i++)
+    for (i = 0; i < inputDate.month - 1; i++)
     {
         ergebnis += tage[i];
     }
 
-    ergebnis += day;
+    ergebnis += inputDate.day;
 
     return ergebnis;
 }
@@ -132,20 +133,24 @@ int day_of_the_year(int day, int month, int year)
 /**
 * Lets user enter a date
 *
-* return 0 if date is valid
+* return struct date with entered values
 **/
-int input_date(int *day, int *month, int *year)
+struct date input_date()
 {
+    struct date inputDate;
     do
     {
         printf("Please enter day: ");
-        scanf("%d", day);
+        scanf("%d", &inputDate.day);
+        fflush(stdin);
         printf("Please enter month: ");
-        scanf("%d", month);
+        scanf("%d", &inputDate.month);
+        fflush(stdin);
         printf("Please enter day: ");
-        scanf("%d", year);
+        scanf("%d", &inputDate.year);
+        fflush(stdin);
     }
-    while(exists_date(*day, *month, *year) == -1);
+    while(exists_date(inputDate) == -1);
 
-    return 0;
+    return inputDate;
 }

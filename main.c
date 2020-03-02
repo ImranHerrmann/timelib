@@ -13,10 +13,10 @@
 **/
 int main()
 {
-    int day = 0, month = 0, year = 0;
-    input_date(&day, &month, &year);
+    struct date inputDate = input_date();
 
-    int tag_des_jahres = day_of_the_year(day, month, year);
+
+    int tag_des_jahres = day_of_the_year(inputDate);
 
     //check for error
     if (tag_des_jahres == -1)

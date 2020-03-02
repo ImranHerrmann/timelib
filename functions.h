@@ -13,11 +13,18 @@
 
 int is_leapyear(int year);
 
+struct date
+{
+    int day;
+    int month;
+    int year;
+};
+
 int get_days_for_month(int month, int year);
 
-int exists_date(int day, int month, int year);
+int exists_date(struct date inputDate);
 
-int day_of_the_year(int day, int month, int year);
+int day_of_the_year(struct date inputDate);
 
-int input_date(int *day, int *month, int *year);
+struct date input_date();
 #endif // FUNCTIONS_H_INCLUDED
